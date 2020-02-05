@@ -42,57 +42,27 @@ func InitTree(Vals ...int) (root *TreeNode) {
 	return &rootNode
 }
 
-func searchTree(val int, root *TreeNode) bool {
-
-	// start at root node and traverse downwards first (DFS)
-	// check left child - init, condition, then go to next node
-	for currentNode := root; root.Left != nil; currentNode = currentNode.Left {
-		fmt.Println("I am in the left for loop")
-		fmt.Println(currentNode.Val)
-		// check if exists in children both Left and Right
-		if currentNode.Left.Val == val || currentNode.Right.Val == val {
-			return true
+func stringify(tree *TreeNode, level int) {
+	if tree != nil {
+		format := ""
+		for i := 0; i < level; i++ {
+			format += "       "
 		}
-		if currentNode.Left == nil {
-			break
-		}
+		format += "---[ "
+		level++
+		stringify(tree.Right, level)
+		fmt.Printf(format+"%d\n", tree.Val)
+		stringify(tree.Left, level)
 	}
-
-	// check right child - init, condition, then go to next node
-	for currentNode := root; root.Right != nil; currentNode = currentNode.Right {
-		fmt.Println("I am in the right for loop")
-		fmt.Println(currentNode.Val)
-		// check if exists in children both Left and Right
-		if currentNode.Left.Val == val || currentNode.Right.Val == val {
-			return true
-		}
-		if currentNode.Right == nil {
-			break
-		}
-	}
-
-	// fmt.Println(val)
-
-	return false
-}
-
-func findTarget(root *TreeNode, target int) int {
-	// start at root and deduct target from root
-	diff := target - root.Val
-
-	// find the other number in the tree
-
-	// if it doesn't exist repeat on the next consecutive node for the remainder
-
-	fmt.Println(diff)
-	return diff
 }
 
 func main() {
 	treeNode := InitTree(5, 3, 6, 2, 4, 7)
+	treeNode := InitTree(5, 4, 2, 6, 3, 7)
+	stringify(treeNode, 5)
 
 	// target := 9
 	// fmt.Println(treeNode)
 	// findTarget(treeNode, target)
-	searchTree(5, treeNode)
+	// searchTree(5, treeNode)
 }

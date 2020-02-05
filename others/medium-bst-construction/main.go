@@ -120,13 +120,13 @@ func stringify(tree *BST, level int) {
 	if tree != nil {
 		format := ""
 		for i := 0; i < level; i++ {
-			format += "       "
+			format += "   "
 		}
 		format += "---[ "
 		level++
-		stringify(tree.left, level)
+		stringify(tree.left, level+1)
 		fmt.Printf(format+"%d\n", tree.value)
-		stringify(tree.right, level)
+		stringify(tree.right, level+1)
 	}
 }
 
@@ -134,7 +134,7 @@ func main() {
 	tree := &BST{value: 6}
 	fmt.Println(tree)
 	fmt.Println(tree.Insert(5).Insert(1).Insert(7).Insert(0).Insert(3).Insert(8))
-	stringify(tree, 4)
+	stringify(tree, 0)
 }
 
 /* -------- NOTES -----------
