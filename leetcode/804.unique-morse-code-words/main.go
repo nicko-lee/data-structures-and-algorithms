@@ -89,4 +89,7 @@ For convenience here is the mapping:
 
 Very simple Set implementation! This was a really useful data structure for this question
 https://yourbasic.org/golang/implement-set/
+
+Nice example on easily converting byte (uint8) and rune (int32) from a number into a string
+https://play.golang.org/p/1aXDgrckHKs
 */
